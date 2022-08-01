@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Newsletter',
             'slug' => 'newsletter'
         ]);
+        Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
 
         Post::factory(20)->create();
         // Post::create([

@@ -11,6 +11,7 @@ class Post extends Model
 
     // protected $fillable = ['title', 'excerpt', 'body']; yaitu field yg boleh diisi yg mana aja, sisanya gaboleh
     protected $guarded = ['id']; // kebalikan dari fillable, yaitu field yg harus dijaga itu mana, sisanya boleh diisi
+    protected $with = ['category', 'author']; // fitur eager loading eloquent
 
     public function category()
     {
