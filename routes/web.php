@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -16,12 +18,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Halaman login
-Route::get('/login', [LoginController::class, 'index']);
+// Halaman login & logout
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // Halaman register
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Halaman dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 // Halaman home
 Route::get('/', function () {
